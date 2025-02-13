@@ -1,0 +1,223 @@
+@use '../helpers' as *;
+
+.header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  animation-name: scrolling-header;
+  animation-fill-mode: both;
+  animation-timeline: scroll();
+  animation-range: rem(100) rem(200);
+
+  @keyframes scrolling-header {
+    to {
+      box-shadow: 0 0 1rem 0 var(--color-dark-40);
+    }
+  }
+
+  &__logo {
+    background-image: url('../images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: rem(160);
+    height: rem(44);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+
+    @include tablet {
+      background-image: url('../images/mobile-logo.svg');
+      width: rem(39);
+      height: rem(43);
+    }
+  }
+
+  &__body {
+    padding-block: rem(28);
+    background-color: var(--color-light);
+
+    @include mobile {
+      padding-block: rem(20);
+    }
+
+    &-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 1rem;
+    }
+  }
+
+  &__overlay {
+    @include laptop {
+      display: contents;
+    }
+
+    @include tablet {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 3rem;
+      padding: 1rem;
+      background-color: var(--color-gray-80);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:not(.is-active) {
+        @include hide;
+
+        transform: translateY(-100%);
+      }
+    }
+  }
+
+  &__menu {
+    &-theme {
+      border: none;
+      background: none;
+      padding: rem(10) rem(24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: rem(12);
+      font-weight: 500;
+      line-height: rem(15);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--color-dark-10);
+
+      @include tablet {
+        border: 1px solid var(--color-dark-10);
+        border-radius: rem(100);
+
+        &:hover {
+          background-color: var(--color-dark-10);
+          color: var(--color-light);
+        }
+
+        &:hover svg path {
+          fill: var(--color-light) !important;
+        }
+      }
+    }
+
+    &-theme img {
+      min-width: 16px;
+    }
+
+    &-btn {
+      background-color: var(--color-light);
+      color: var(--color-accent-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: rem(12);
+      padding: rem(10) rem(20);
+      border: rem(1) solid var(--color-accent-100);
+      font-size: rem(16);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: rem(100);
+      font-weight: 500;
+      line-height: rem(15);
+    }
+
+    &-btn:hover {
+      background-color: var(--color-accent-100);
+      color: var(--color-light);
+    }
+    &-btn:hover svg path {
+      fill: var(--color-light) !important;
+    }
+
+    &-download {
+      background-color: var(--color-accent-100);
+      color: var(--color-accent-light);
+      margin-left: rem(24);
+      color: var(--color-light);
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      text-align: center;
+
+      &::before {
+        content: '';
+        background-color: #48ff91;
+        border-radius: rem(100);
+        width: 0;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition-duration: 0.5s;
+        transition-property: width;
+        z-index: -1;
+      }
+      &:hover {
+        color: #000;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+      @include tablet {
+        margin-left: 0;
+      }
+    }
+
+    @include mobile {
+      overflow-y: auto;
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+
+      @include laptop {
+        column-gap: rem(0);
+      }
+
+      @include tablet {
+        display: none;
+      }
+    }
+
+    &-link {
+      padding: rem(10) rem(20);
+      color: var(--color-dark-20);
+      font-size: rem(14);
+      font-weight: 500;
+      letter-spacing: rem(0.2);
+
+      @include laptop {
+        padding: rem(10) rem(14);
+      }
+
+      @include tablet {
+        padding: rem(14) rem(24);
+        width: 100%;
+      }
+
+      &.is-active {
+        color: var(--color-light);
+        font-weight: 500;
+        background-color: var(--color-dark);
+        border: var(--border);
+        border-radius: rem(10);
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+nav {
+  @include tablet {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: rem(0) rem(16);
+    row-gap: rem(16);
+  }
+}

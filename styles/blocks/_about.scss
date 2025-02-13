@@ -1,0 +1,26 @@
+@use '../helpers' as *;
+
+.about {
+  &__list {
+    display: flex;
+    gap: rem(32);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: rem(56);
+  }
+
+  &__item {
+    flex: 1;
+  }
+
+  &__item-title {
+    font-size: fluid(25, 22);
+    line-height: fluid(26, 24);
+    text-align: center;
+  }
+  
+  &__item-subtitle-color {
+    color: var(--color-accent-100);
+  }
+}

@@ -1,0 +1,24 @@
+@use '../helpers' as *;
+
+.mobile__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(12);
+  margin-top: fluid(96,96);
+
+  @include tablet-above {
+    display: none;
+  }
+}
+
+.mobile__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(14) rem(20);
+  border-radius: rem(10);
+  background-color: var(--color-light);
+  font-size: rem(18);
+  font-weight: 500;
+  color: var(--color-dark-20);
+}

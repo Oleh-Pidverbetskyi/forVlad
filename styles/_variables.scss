@@ -1,0 +1,28 @@
+@use 'helpers' as *;
+
+:root {
+  --color-light: #ffffff;
+
+  --color-accent-100: #0500ff;
+
+  --color-dark-20: #242426;
+  --color-dark-10: #1b1b1c;
+
+  --color-gray-80: #f4f4f7;
+
+  --shadow: 0 0 0 #{rem(3)} #191919;
+
+  --font-family-base: 'Inter', sans-serif;
+  --font-family-accent: 'Kumbh Sans', sans-serif;
+
+  --container-width: #{rem(1400)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+
+  --100vw: calc(100vw - var(--scrollbar-width));
+
+  @include laptop {
+    --container-width: #{rem(1280)};
+  }
+}
